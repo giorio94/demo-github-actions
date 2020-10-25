@@ -1,0 +1,35 @@
+name: Test the edit-keycloak-redirect-uri action
+on:
+  push:
+    branches:
+      '*'
+
+jobs:
+  edit-keycloak-redirect-uri:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Add
+      uses: ./.github/actions/edit-keycloak-redirect-uri
+      with:
+        keycloak_user: ${{ secrets.KEYCLOAK_USER }}
+        keycloak_pass: ${{ secrets.KEYCLOAK_PASS }}
+        client_id: ${{ secrets.KEYCLOAK_CLIENT_ID }}
+        action: add
+        redirect_uri: ${{ env.HOST_NAME }}
+      env:
+        HOST_NAME: https://1.preprod.crownlabs.polito.it/*
+
+    - name: Remove
+      uses: ./.github/actions/edit-keycloak-redirect-uri
+      with:
+        keycloak_user: ${{ secrets.KEYCLOAK_USER }}
+        keycloak_pass: ${{ secrets.KEYCLOAK_PASS }}
+        client_id: ${{ secrets.KEYCLOAK_CLIENT_ID }}
+        action: remove
+        redirect_uri: ${{ env.HOST_NAME }}
+      env:
+        HOST_NAME: https://2.preprod.crownlabs.polito.it/*
