@@ -1,0 +1,21 @@
+name: 'edit-keycloak-redirect-uris'
+description: 'Add or remove a redirect URI from a Keycloak client'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  keycloak_user:
+    description: 'The admin username for the OIDC server'
+    required: true
+  keycloak_pass:
+    description: 'The admin password for the OIDC server'
+    required: true
+  client_id:
+    description: 'The ID of the Keycloak client to be edited'
+    required: true
+  action:
+    description: 'The action to be performed (add/remove)'
+    required: true
+  redirect_uri:
+    description: 'The redirect URI to be added/removed'
+    required: true
