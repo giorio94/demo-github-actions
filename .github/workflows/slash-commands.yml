@@ -16,9 +16,22 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           reaction-token: ${{ secrets.CI_TOKEN }}
           issue-type: pull-request
-          permission: write
-          commands: |
-            merge
-            rebase
-            deploy-staging
-            undeploy-staging
+          config: >
+            [
+              {
+                "command": "merge",
+                "permission": "write"
+              },
+              {
+                "command": "rebase",
+                "permission": "none"
+              },
+              {
+                "command": "deploy-staging",
+                "permission": "write"
+              },
+              {
+                "command": "undeploy-staging",
+                "permission": "write"
+              }
+            ]
