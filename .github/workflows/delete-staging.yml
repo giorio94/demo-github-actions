@@ -39,3 +39,19 @@ jobs:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reactions: 'hooray'
         if: github.event_name == 'repository_dispatch'
+
+      - name: Test comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            Your staging environment has been correctly deployed/updated!
+
+            * *Frontend*: check it out at ${{ env.HOST_NAME }}/login
+            * *Laboratory operator*: add the '${{ env.CM_WHITELIST_LABELS }}' label to your namespace
+          reactions: 'rocket'
+        env:
+          HOST_NAME: www.foo.com
+          CM_WHITELIST_LABELS: testing=true
