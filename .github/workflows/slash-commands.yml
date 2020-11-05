@@ -33,5 +33,9 @@ jobs:
               {
                 "command": "undeploy-staging",
                 "permission": "write"
+              },
+              {
+                "command": "test",
+                "permission": "write"
               }
             ]
