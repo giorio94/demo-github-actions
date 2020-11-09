@@ -17,7 +17,7 @@ jobs:
       - name: Configure
         id: configure
         run: |
-          echo "::set-output name=ref::11d2361090cda99b857fe0094f199fadf38930b6"
+          echo "::set-output name=ref::82c5bc492eb1b3d4358a558681a214caaa5223b4"
 
   trigger-events-deploy-staging:
     name: Trigger events upon /deploy-staging comment
