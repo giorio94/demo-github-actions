@@ -16,6 +16,10 @@ class ImageListUpdater:
     and saves the obtained information as a Kubernetes object.
     """
 
+
+
+
+
     def __init__(self, image_list_requestor, image_list_saver, registry_adv_name):
         """
         Initializes the object.
