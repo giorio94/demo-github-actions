@@ -26,6 +26,8 @@ class ImageListUpdater:
 
         self.image_list_requestor = image_list_requestor
         self.image_list_saver = image_list_saver
+
+
         self.registry_adv_name = registry_adv_name
         self.scheduler = sched.scheduler(time.time, time.sleep)
 
