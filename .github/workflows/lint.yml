@@ -22,7 +22,7 @@ jobs:
       - name: Check linting
         uses: grantmcconnaughey/lintly-flake8-github-action@v1.0
         with:
-          token: ${{ secrets.CI_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           failIf: any
         env:
           LINTLY_PR: ${{ github.event.pull_request.number }}
