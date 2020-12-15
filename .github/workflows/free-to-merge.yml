@@ -1,0 +1,20 @@
+name: Remove hold label
+on:
+  repository_dispatch:
+    types:
+      - free-to-merge-command
+
+jobs:
+  free-to-merge:
+    name: Remove the hold label
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo json to debug
+        run: echo "${{ toJson(github.event) }}"
+      - name: Remove the hold label to allow merging
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          github_token: "${{ secrets.CI_TOKEN }}"
+          number: ${{ github.event.client_payload.github.payload.issue.number }}
+          labels: hold

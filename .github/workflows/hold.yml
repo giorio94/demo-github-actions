@@ -1,0 +1,33 @@
+name: Manage the hold label
+on:
+  repository_dispatch:
+    types:
+      - hold-command
+      - free-to-merge-command
+
+jobs:
+  hold:
+    name: Add hold label
+    runs-on: ubuntu-latest
+    if: github.event.action == "hold-command"
+
+    steps:
+      - name: Add the hold label to avoid merging
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: "${{ secrets.CI_TOKEN }}"
+          number: ${{ github.event.client_payload.github.payload.issue.number }}
+          labels: hold
+
+  free-to-merge:
+    name: Remove the hold label
+    runs-on: ubuntu-latest
+    if: github.event.action == "free-to-merge-command"
+
+    steps:
+      - name: Remove the hold label to allow merging
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          github_token: "${{ secrets.CI_TOKEN }}"
+          number: ${{ github.event.client_payload.github.payload.issue.number }}
+          labels: hold

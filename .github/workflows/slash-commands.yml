@@ -37,5 +37,13 @@ jobs:
               {
                 "command": "test",
                 "permission": "write"
+              },
+              {
+                "command": "hold",
+                "permission": "none"
+              },
+              {
+                "command": "free-to-merge",
+                "permission": "none"
               }
             ]
