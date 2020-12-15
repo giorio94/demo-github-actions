@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: echo to debug
+        run: echo ${{ github.event }}
       - name: Add the hold label to avoid merging
         uses: actions-ecosystem/action-add-labels@v1
         with:
