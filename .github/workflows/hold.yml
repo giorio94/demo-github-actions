@@ -1,0 +1,18 @@
+name: Add hold label
+on:
+  repository_dispatch:
+    types:
+      - hold-command
+
+jobs:
+  hold:
+    name: Add hold label
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add the hold label to avoid merging
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: "${{ secrets.CI_TOKEN }}"
+          number: ${{ github.event.client_payload.github.payload.issue.number }}
+          labels: hold
