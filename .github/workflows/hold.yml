@@ -19,6 +19,13 @@ jobs:
           number: ${{ github.event.client_payload.github.payload.issue.number }}
           labels: hold
 
+      - name: Report status as reaction
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reactions: hooray
+
   free-to-merge:
     name: Remove the hold label
     runs-on: ubuntu-latest
@@ -31,3 +38,10 @@ jobs:
           github_token: "${{ secrets.CI_TOKEN }}"
           number: ${{ github.event.client_payload.github.payload.issue.number }}
           labels: hold
+
+      - name: Report status as reaction
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reactions: hooray
