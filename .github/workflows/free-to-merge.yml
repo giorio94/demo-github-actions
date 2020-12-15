@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: echo to debug
-        run: echo ${{ github.event }}
+      - name: echo json to debug
+        run: echo ${{ toJson(github.event) }}
       - name: Remove the hold label to allow merging
         uses: actions-ecosystem/action-remove-labels@v1
         with:
