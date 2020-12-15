@@ -9,7 +9,7 @@ jobs:
   hold:
     name: Add hold label
     runs-on: ubuntu-latest
-    if: github.event.action == "hold-command"
+    if: github.event.action == 'hold-command'
 
     steps:
       - name: Add the hold label to avoid merging
@@ -22,7 +22,7 @@ jobs:
   free-to-merge:
     name: Remove the hold label
     runs-on: ubuntu-latest
-    if: github.event.action == "free-to-merge-command"
+    if: github.event.action == 'free-to-merge-command'
 
     steps:
       - name: Remove the hold label to allow merging
